@@ -1,0 +1,736 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+    
+    <!--  PRZYWITANIE     -->
+    <category>
+        <pattern>witaj</pattern>
+        <template><delay>1</delay>Witaj, jestem <bot name="name"/>, pomagam w wydziale komunikacji. 
+        O czym chciaÅbyÅ siÄ dowiedzieÄ? ð</template>
+    </category>
+    
+    <category>
+        <pattern>witaj *</pattern><template><srai>witaj</srai></template>
+    </category>
+    <category>
+        <pattern>hallo ^</pattern><template><srai>witaj</srai></template>
+    </category>
+    <category>
+        <pattern>siema ^</pattern><template><srai>witaj</srai></template>
+    </category>
+    <category>
+        <pattern>czeÅÄ ^</pattern><template><srai>witaj</srai></template>
+    </category>
+    <category>
+        <pattern>hej ^</pattern><template><srai>witaj</srai></template>
+    </category>
+    <category>
+        <pattern>dzieÅ dobry ^</pattern><template><srai>witaj</srai></template>
+    </category>
+    
+    <!--  PRAWO JAZDY  -->
+    
+    <category>
+        <pattern>ChciaÅbym zrobiÄ prawo jazdy</pattern>
+        <template><delay>1</delay>
+        <think><set name="prawojazdy">wyrobienie</set>
+            <set name ="topic">pj1</set></think>
+            ChciaÅbyÅ siÄ dowiedzieÄ co masz zrobiÄ?
+        </template>
+    </category>
+    
+    <category>
+        <pattern>ChciaÅbym odebraÄ prawo jazdy</pattern>
+        <template><delay>1</delay>
+        <think><set name="prawojazdy">od1</set>
+        <set name ="topic">pj1</set></think>
+            ChciaÅbyÅ siÄ dowiedzieÄ co masz zrobiÄ?
+        </template>
+    </category>
+
+    <category>
+        <pattern>ChciaÅbym wymieniÄ prawo jazdy</pattern>
+        <template><delay>1</delay>
+        <think><set name="prawojazdy">wymiana</set>
+        <set name ="topic">pj1</set></think>
+            ChciaÅbyÅ siÄ dowiedzieÄ jakie dokumenty potrzebujesz?
+        </template>
+    </category>
+    
+    <category>
+        <pattern>ChciaÅbym wyrobiÄ miÄdzynarodowe prawo jazdy</pattern>
+        <template><delay>1</delay>
+        <think><set name="prawojazdy">mn1</set>
+        <set name ="topic">pj1</set></think>
+            ChciaÅbyÅ siÄ dowiedzieÄ co masz zrobiÄ?
+        </template>
+    </category>
+    
+     <category>
+        <pattern>Zatrzymano mi prawo jazdy</pattern>
+        <template><delay>1</delay>
+        <think><set name="prawojazdy">zatrzymane</set>
+        <set name ="topic">pj1</set></think>
+            ChciaÅbyÅ siÄ dowiedzieÄ co masz zrobiÄ?
+        </template>
+    </category>
+    
+<topic name = "pj1">
+
+    <category>
+        <pattern>co mam zrobiÄ</pattern>
+        <template><delay>1</delay>
+            <condition name="prawojazdy" value="wyrobienie">
+                        NaleÅ¼y zgÅosiÄ siÄ do wydziaÅu komunikacji po Profil Kandydata na KierowcÄ. Procedura wydania PKK znajduje siÄ tutaj: 
+                        <link>
+                        <text> Procedura</text>
+                        <url>https://www.bip.powiat.trzebnica.pl/Article/get/id,15937.html</url>
+                    </link> NastÄpnie, z wymaganymi dokumentami naleÅ¼y udaÄ siÄ do OÅrodka Szkolenia KierowcÃ³w lub WojewÃ³dzkiego OÅrodka Ruchu Drogowego.
+            </condition>
+            <condition name="prawojazdy" value="od1">
+                        Prawo jazdy odbiera siÄ osobiÅcie z dokumentem potwierdzajÄcym toÅ¼samoÅÄ na stanowisko nr 1. Dokument dostÄpny jest w ciÄgu 30 dni od zÅoÅ¼enia wniosku o wydanie.
+            </condition>
+            <condition name="prawojazdy" value="wymiana">
+                        Z wypeÅnionym wnioskiem i wymaganymi dokumentami naleÅ¼y stawiÄ siÄ osobiÅcie wraz z dowodem osobistym oraz aktualnym prawem jazdy na stanowisku nr 1.
+            </condition>
+            <condition name="prawojazdy" value="mn1">
+                        Z wypeÅnionym wnioskiem i wymaganymi dokumentami naleÅ¼y stawiÄ siÄ na stanowisku nr 1. Dokument dostÄpny jest w ciÄgu 7 dni od zÅoÅ¼enia wniosku.
+            </condition>
+            <condition name="prawojazdy" value="zatrzymane">
+                        WypeÅnoiny wniosek wraz z pozostaÅymi dokumentami naleÅ¼y zÅoÅ¼yÄ osobiÅcie na stanosisku nr 1. Sprawa zaÅatwiana jest niezwÅocznie, a jeÅ¼eli prawo jazdy zatrzymane byÅo na okres dÅuÅ¼szy niÅ¼ 1 rok, po przekazaniu dokumentÃ³w, po zdaniu egzaminu sprawdzajÄcego 
+                        kwalifikacje i ewentualnemu dostarczeniu orzeczenia lekarskiego, jeÅli byÅo ono wymagane.
+            </condition>
+            </template>
+    </category>
+    
+        <category>
+        <pattern>^ zrobiÄ</pattern>
+        <template><delay>1</delay><srai>co mam zrobiÄ</srai></template>
+    </category>
+    
+    <category>
+        <pattern>^ wyglÄda</pattern>
+        <template><delay>1</delay><srai>co mam zrobiÄ</srai></template>
+    </category>
+
+    
+    <category>
+        <pattern>jakich dokumentÃ³w potrzebujÄ</pattern>
+        <template><delay>1</delay>BÄdÄ Tobie potrzebne:
+            <condition name="prawojazdy" value="wyrobienie">
+            <ul>
+                <li>WypeÅniony wniosek:
+                    <link>
+                        <text> Wniosek</text>
+                        <url>https://www.bip.powiat.trzebnica.pl/api/files/36529</url>
+                    </link>
+                </li>
+                <li>DowÃ³d toÅ¼samoÅci</li>
+                <li>Kolorowa, aktualna fotografia 3,5cm x 4,5cm</li>
+                <li>Orzeczenie lekarskie stwierdzajÄce brak przeciwwskazaÅ do kierowania pojazdem, wydane przez lekarza uprawnionego do badaÅ kierowcÃ³w</li>
+                <li>Orzeczenie psychologiczne stwierdzajÄce brak przeciwwskazaÅ psychologicznych do kierowania pojazdem (przy kat. C1, C, D1, D, C1+E, C+E, D1+E, D+E)</li>
+                <li>Pisemna zgoda rodzicÃ³w lub opiekunÃ³w, jeÅ¼eli nie ukoÅczyÅeÅ 18 lat (przy kat. AM, A1, B1, T)</li>
+                <li>Kserokopia prawa jazdy (jeÅli posiadasz juÅ¼ prawo jazdy)</li>
+                <li>ZaÅwiadczenie potwierdzajÄce ukoÅczenie szkolenia</li>
+            </ul>
+            </condition>
+            <condition name="prawojazdy" value="od1">
+            <ul>
+                <li>Dokument potwierdzajÄcy toÅ¼samoÅÄ</li>
+            </ul>
+            </condition>
+            <condition name="prawojazdy" value="wymiana">
+            <ul>
+                <li>WypeÅniony wniosek:
+                    <link>
+                        <text> Wniosek</text>
+                        <url>https://www.bip.powiat.trzebnica.pl/api/files/36529</url>
+                    </link>
+                </li>
+                <li>Kolorowa, aktualna fotografia 3,5cm x 4,5cm</li>
+                <li>Kserokopia aktualnego prawa jazdy</li>
+                <li>DowÃ³d uiszczeznia opÅaty</li>
+            </ul>
+            </condition>
+            <condition name="prawojazdy" value="mn1">
+            <ul>
+                <li>WypeÅniony wniosek: 
+                    <link>
+                        <text> Wniosek</text>
+                        <url>https://www.bip.powiat.trzebnica.pl/Download/get/id,36528.html</url>
+                    </link>
+                </li>
+                <li>Kolorowa, aktualna fotografia 3,5cm x 4,5cm</li>
+                <li>Kserokopia prawa jazdy</li>
+                <li>Do wglÄdu oryginaÅ waÅ¼nego krajowego prawa jazdy</li>
+                <li>DowÃ³d toÅ¼samoÅci</li>
+                <li>DowÃ³d uiszczeznia opÅaty</li>
+            </ul>
+            </condition>
+            <condition name="prawojazdy" value="zatrzymane">
+            <ul>
+                <li>WypeÅniony wniosek: 
+                    <link>
+                        <text> Wniosek</text>
+                        <url>https://www.bip.powiat.trzebnica.pl/Download/get/id,36528.html</url>
+                    </link>
+                </li>
+                <li>DowÃ³d uiszczeznia opÅaty</li>
+            </ul>
+            <delay>1</delay>
+            W przypadku wydania wczeÅniej skierowania na badania: orzeczenie lekarskie od lekarza uprawnionego do badaÅ kierowcÃ³w, orzeczenie psychologiczne.
+            </condition>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>^ dokumentami ^</pattern><template><srai>jakich dokumentÃ³w potrzebujÄ</srai></template>
+    </category>
+    
+    <category>
+        <pattern>^ dokumenty ^</pattern><template><srai>jakich dokumentÃ³w potrzebujÄ</srai></template>
+    </category>
+    
+    <category>
+        <pattern>^ papiery ^</pattern><template><srai>jakich dokumentÃ³w potrzebujÄ</srai></template>
+    </category>
+    
+    <category>
+        <pattern>^ papierÃ³w ^</pattern><template><srai>jakich dokumentÃ³w potrzebujÄ</srai></template>
+    </category>
+    
+    <category>
+        <pattern>^ jaki jest koszt</pattern>
+        <template><delay>1</delay>
+        <condition name="prawojazdy">
+            <li value="wyrobienie">Koszt wyrobienia prawa jazdy to <map name="prawojazdy">wyrobienie_koszt</map> zÅ</li>
+            <li value="od1">Koszt odbioru prawa jazdy jest <map name="prawojazdy">odbior_koszt</map></li>
+            <li value="wymiana">Koszt wymiany prawa jazdy to <map name="prawojazdy">wymiana_koszt</map> zÅ</li>
+            <li value="mn1">Koszt miÄdzynarodowego prawa jazdy to <map name="prawojazdy">miedzynarodowe_koszt</map> zÅ</li>
+            <li value="zatrzymane">Koszt wydania zatrzymanego prawa jazdy to <map name="prawojazdy">zatrzymane_koszt</map> zÅ</li>
+        </condition>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>^ opÅaty</pattern><template><srai>^ jaki jest koszt</srai></template>
+    </category>
+    
+    <category>
+        <pattern>ile kosztuje odbiÃ³r</pattern><template><srai>^ jaki jest koszt</srai></template>
+    </category>
+    
+    <category>
+        <pattern>ile kosztuje wymiana</pattern><template><srai>^ jaki jest koszt</srai></template>
+    </category>
+    
+    <category>
+        <pattern>ile kosztuje wyrobienie</pattern><template><srai>^ jaki jest koszt</srai></template>
+    </category>
+    
+    <category>
+        <pattern>ile kosztuje zwrot</pattern><template><srai>^ jaki jest koszt</srai></template>
+    </category>
+    
+    <category>
+        <pattern>^ ile to kosztuje</pattern><template><srai>^ jaki jest koszt</srai></template>
+    </category>
+    
+    <category>
+        <pattern>duÅ¼o to kosztuje</pattern><template><srai>^ jaki jest koszt</srai></template>
+    </category>
+    
+    <category>
+        <pattern>ile muszÄ zapÅaciÄ</pattern><template><srai>^ jaki jest koszt</srai></template>
+    </category>
+    
+    <category>
+        <pattern>ile dokumentÃ³w</pattern>
+        <template><delay>1</delay>
+        <condition name="prawojazdy">
+            <li value="wyrobienie">IloÅÄ wymaganych dokumantÃ³w to: <map name="prawojazdy">wyrobienie_ile_dok</map></li>
+            <li value="od1">IloÅÄ wymaganych dokumantÃ³w to: <map name="prawojazdy">odbior_ile_dok</map></li>
+            <li value="wymiana">IloÅÄ wymaganych dokumantÃ³w to: <map name="prawojazdy">wymiana_ile_dok</map></li>
+            <li value="mn1">IloÅÄ wymaganych dokumantÃ³w to: <map name="prawojazdy">miedzynarodowe_ile_dok</map></li>
+            <li value="zatrzymane">IloÅÄ wymaganych dokumantÃ³w to: <map name="prawojazdy">zatrzymane_ile_dok</map></li>
+        </condition>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>ile dokumentÃ³w potrzebuje</pattern><template><srai>ile dokumentÃ³w</srai></template>
+    </category>
+    
+    <category>
+        <pattern>Czy muszÄ to zrobiÄ osobiÅcie</pattern>
+        <template><delay>1</delay>
+            Niekoniecznie, moÅ¼na wypeÅniÄ wniosek o peÅnomocnictwo. Koszt takiego peÅnomocnictwa wynosi 17 zÅ
+        </template>
+    </category>
+    
+    <category>
+        <pattern>^ osobiÅcie</pattern>
+        <template><delay>1</delay><srai>Czy muszÄ to zrobiÄ osobiÅcie</srai></template>
+    </category>
+    
+    <category>
+        <pattern>tak</pattern>
+        <template><delay>1</delay>
+        <condition name="prawojazdy">
+            <li value="wyrobienie"><srai>co mam zrobiÄ</srai></li>
+            <li value="od1"><srai>co mam zrobiÄ</srai></li>
+            <li value="wymiana"><srai>jakich dokumentÃ³w potrzebujÄ</srai></li>
+            <li value="mn1"><srai>co mam zrobiÄ</srai></li>
+            <li value="zatrzymane"><srai>co mam zrobiÄ</srai></li>
+        </condition>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>nie</pattern>
+        <template><delay>1</delay>
+            WiÄc jakie masz do mnie pytanie
+        </template>
+    </category>
+    
+    </topic>
+    
+    
+    <!--  REJESTRACJA  -->
+    
+    <category>
+        <pattern>ChciaÅbym zarejestrowaÄ auto</pattern>
+        <template><delay>1</delay>
+        <think><set name ="pojazd">auto</set></think>
+             A czy to auto jest krajowe, czy sprowadzone?
+             <srai>krajowevssprowadzone</srai>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>* zarejestrowaÄ auto</pattern>
+        <template><delay>1</delay><srai>ChciaÅbym zarejestrowaÄ auto</srai></template>
+    </category>
+    
+    <category>
+        <pattern>ChciaÅbym zarejestrowaÄ motor</pattern>
+        <template><delay>1</delay>
+        <think><set name ="pojazd">motor</set></think>
+             A czy ten motor jest krajowy, czy sprowadzony?
+             <srai>krajowevssprowadzone</srai>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>* zarejestrowaÄ motor</pattern>
+        <template><delay>1</delay><srai>ChciaÅbym zarejestrowaÄ motor</srai></template>
+    </category>
+    
+    <category>
+        <pattern>ChciaÅbym zarejestrowaÄ motorower</pattern>
+        <template><delay>1</delay>
+        <think><set name ="pojazd">motorower</set></think>
+             A czy ten motorower jest krajowy, czy sprowadzony?
+             <srai>krajowevssprowadzone</srai>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>* zarejestrowaÄ motorower</pattern>
+        <template><delay>1</delay><srai>ChciaÅbym zarejestrowaÄ motorower</srai></template>
+    </category>
+    
+    <category>
+        <pattern>ChciaÅbym zarejestrowaÄ ciÄgnik</pattern>
+        <template><delay>1</delay>
+        <think><set name ="pojazd">ciÄgnik</set></think>
+             A czy ten ciÄgnik jest krajowy, czy sprowadzony?
+             <srai>krajowevssprowadzone</srai>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>* zarejestrowaÄ ciÄgnik</pattern>
+        <template><delay>1</delay><srai>ChciaÅbym zarejestrowaÄ ciÄgnik</srai></template>
+    </category>
+    
+     <category>
+        <pattern>krajowevssprowadzone</pattern>
+        <template>
+        <think><set name ="topic">rej1</set></think>
+             <reply>
+                <text>Krajowy</text>
+                <postback>krajowe</postback>
+            </reply>
+            <reply>
+                <text>Sprowadzony</text>
+                <postback>sprowadzone</postback>
+            </reply>
+        </template>
+    </category>
+    
+<topic name = "rej1">
+   
+   <category>
+       <pattern>krajowe</pattern>
+       <template><delay>1</delay>
+        <think><set name="rejestracja">krajowe</set></think>
+        ChciaÅbyÅ poznaÄ procedurÄ jak zarejestrowaÄ?</template>
+   </category>
+   
+   <category>
+       <pattern>krajowy</pattern>
+       <template><delay>1</delay><srai>krajowe</srai></template>
+   </category>
+   
+    <category>
+       <pattern>sprowadzone</pattern>
+       <template><delay>1</delay>
+        <think><set name="rejestracja">sprowadzone</set></think>
+        ChciaÅbyÅ poznaÄ procedurÄ?</template>
+   </category>
+    
+    <category>
+       <pattern>sprowadzony</pattern>
+       <template><delay>1</delay><srai>sprowadzone</srai></template>
+   </category>
+    
+    <category>
+        <pattern>co mam zrobiÄ</pattern>
+        <template><delay>1</delay>
+            <condition name="rejestracja" value="krajowe">
+                      Z wymaganymi dokumantami naleÅ¼y stawiÄ siÄ osobiÅcie do stanowiska nr 4, 5, 6, 7. W ciÄgu 30 dni dokument bÄdzie gotowy, do tego czasu zostanie wydane pozwolenie czasowe.
+            </condition>
+            <condition name="rejestracja" value="sprowadzone">
+                      Z wymaganymi dokumantami naleÅ¼y stawiÄ siÄ osobiÅcie do stanowiska nr 4, 5, 6, 7. W ciÄgu 30 dni dokument bÄdzie gotowy, do tego czasu zostanie wydane pozwolenie czasowe. Dla dokumentÃ³w sporzÄdzonych w jÄzyku obcym wymaga siÄ tÅumaczeÅ przysiÄgÅych.  
+            </condition> 
+            </template>
+    </category>
+    
+    <category>
+        <pattern>^ zrobiÄ</pattern>
+        <template><delay>1</delay><srai>co mam zrobiÄ</srai></template>
+    </category>
+    
+    <category>
+        <pattern>^ wyglÄda</pattern>
+        <template><delay>1</delay><srai>co mam zrobiÄ</srai></template>
+    </category>
+    
+    <category>
+        <pattern>jakich dokumentÃ³w potrzebujÄ</pattern>
+        <template><delay>1</delay>BÄdÄ Tobie potrzebne:
+            <condition name="rejestracja" value="krajowe">
+            <ul>
+                <li>WypeÅniony wniosek:
+                    <link>
+                        <text> Wniosek</text>
+                        <url>https://www.bip.powiat.trzebnica.pl/Download/get/id,39635.html</url>
+                    </link>
+                </li>
+                <li>OryginaÅ dowodu wÅasnoÅci pojazdu</li>
+                <li>Dotychczasowy dowÃ³d rejestracyjny</li>
+                <li>Karta pojazdu,jeÅ¼eli byÅa wydana</li>
+                <li>Tablice rejestracyjne</li>
+                <li>DowÃ³d toÅ¼samoÅci</li>
+                <li>Dokument potwierdzajÄcy zawarcie umowy ubezpieczenia obowiÄzkowego OC</li>
+                <li>DowÃ³d uiszczenia opÅaty</li>
+            </ul>
+            </condition>
+            <condition name="rejestracja" value="sprowadzone">
+            <ul>
+                <li>WypeÅniony wniosek:
+                    <link>
+                        <text> Wniosek</text>
+                        <url>https://www.bip.powiat.trzebnica.pl/Download/get/id,25728.html</url>
+                    </link>
+                </li>
+                <li>Dokument potwierdzajÄcy zapÅatÄ akcyzy dla sam.osob.a takÅ¼e czterokoÅowcÃ³w i czterokoÅowcÃ³w lekkich</li>
+                <li>DowÃ³d wÅasnoÅci pojazdu</li>
+                <li>Kopia zaÅwiadcz. o wpisie do ewid.dziaÅalnoÅci gospod. lub kopia KRS</li>
+                <li>Tablice rejestr., jeÅli pojazd byÅ zarejestr. za granicÄ lub oÅwiadczenie o ich braku</li>
+                <li>ZaÅwiadcz. o pozytywnym wyniku bad. techn. pojazdu</li>
+                <li>DowÃ³d toÅ¼samoÅci</li>
+                <li>Dokument potwierdzajÄcy zawarcie umowy ubezpieczenia obowiÄzkowego OC</li>
+                <li>DowÃ³d uiszczenia opÅaty</li>
+            </ul>
+            </condition>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>^ dokumentami ^</pattern><template><srai>jakich dokumentÃ³w potrzebujÄ</srai></template>
+    </category>
+    
+    <category>
+        <pattern>^ dokumenty ^</pattern><template><srai>jakich dokumentÃ³w potrzebujÄ</srai></template>
+    </category>
+    
+    <category>
+        <pattern>^ papiery ^</pattern><template><srai>jakich dokumentÃ³w potrzebujÄ</srai></template>
+    </category>
+    
+    <category>
+        <pattern>^ papierÃ³w ^</pattern><template><srai>jakich dokumentÃ³w potrzebujÄ</srai></template>
+    </category>
+    
+    <category>
+        <pattern>^ jaki jest koszt</pattern>
+        <template><delay>1</delay>
+        <condition name="rejestracja" value="krajowe">
+            <condition name="pojazd">
+            <li value="auto">Koszt zarejestrowania auta to <map name="rejestracja">krajowe_koszt_auto</map> zÅ</li>
+            <li value="motor">Koszt zarejestrowania motoru to <map name="rejestracja">krajowe_koszt_motor</map> zÅ</li>
+            <li value="motorower">Koszt zarejestrowania motoroweru to <map name="rejestracja">krajowe_koszt_motorower</map> zÅ</li>
+            <li value="ciÄgnik">Koszt zarejestrowania ciÄgnika to <map name="rejestracja">krajowe_koszt_rolnicze</map> zÅ</li>
+        </condition>
+        </condition>
+        <condition name="rejestracja" value="sprowadzone">
+            <condition name="pojazd">
+            <li value="auto">Koszt zarejestrowania sprowadzonego auta to <map name="rejestracja">sprowadzone_koszt_auto</map> zÅ</li>
+            <li value="motor">Koszt zarejestrowania sprowadzonego motoru to <map name="rejestracja">sprowadzone_koszt_motor</map> zÅ</li>
+            <li value="motorower">Koszt zarejestrowania sprowadzonego motoroweru to <map name="rejestracja">sprowadzone_koszt_motorower</map> zÅ</li>
+            <li value="ciÄgnik">Koszt zarejestrowania sprowadzonego ciÄgnika to <map name="rejestracja">sprowadzone_koszt_rolnicze</map> zÅ</li>
+        </condition>
+        </condition>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>^ opÅaty</pattern><template><srai>^ jaki jest koszt</srai></template>
+    </category>
+    
+    <category>
+        <pattern>ile kosztuje *</pattern><template><srai>^ jaki jest koszt</srai></template>
+    </category>
+    
+    <category>
+        <pattern>^ ile to kosztuje</pattern><template><srai>^ jaki jest koszt</srai></template>
+    </category>
+    
+    <category>
+        <pattern>duÅ¼o to kosztuje</pattern><template><srai>^ jaki jest koszt</srai></template>
+    </category>
+    
+    <category>
+        <pattern>ile muszÄ zapÅaciÄ</pattern><template><srai>^ jaki jest koszt</srai></template>
+    </category>
+    
+    <category>
+        <pattern>ile dokumentÃ³w</pattern>
+        <template><delay>1</delay>
+        <condition name="rejestracja">
+            <li value="krajowe">IloÅÄ wymaganych dokumantÃ³w to: <map name="rejestracja">krajowe_ile_dok</map></li>
+            <li value="sprowadzone">IloÅÄ wymaganych dokumantÃ³w to: <map name="rejestracja">sprowadzone_ile_dok</map></li>
+        </condition>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>ile dokumentÃ³w potrzebuje</pattern><template><srai>ile dokumentÃ³w</srai></template>
+    </category>
+    
+    <category>
+        <pattern>Czy muszÄ to zrobiÄ osobiÅcie</pattern>
+        <template><delay>1</delay>
+            Niekoniecznie, moÅ¼na wypeÅniÄ wniosek o peÅnomocnictwo. Koszt takiego peÅnomocnictwa wynosi 17 zÅ
+        </template>
+    </category>
+    
+    <category>
+        <pattern>^ osobiÅcie</pattern>
+        <template><delay>1</delay><srai>Czy muszÄ to zrobiÄ osobiÅcie</srai></template>
+    </category>
+    
+    <category>
+        <pattern>tak</pattern>
+        <template><delay>1</delay>
+        <condition name="rejestracja">
+            <li value="krajowe"><srai>co mam zrobiÄ</srai></li>
+            <li value="sprowadzone"><srai>co mam zrobiÄ</srai></li>
+        </condition>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>nie</pattern>
+        <template><delay>1</delay>
+            WiÄc jakie masz do mnie pytanie
+        </template>
+    </category>
+    
+</topic>
+    
+
+    <!--  KONTAKT  -->
+    
+    <category>
+        <pattern>^ kontakt ^</pattern>
+        <template><think><set name ="topic">ogl1</set></think>
+            <delay>1</delay>
+            <ul>
+                <li>Starostwo Powiatowe w Trzebnicy
+                WydziaÅ Komunikacji
+                ul. LeÅna 1
+                55-100 Trzebnica</li>
+                <li>e-mail: komunikacja@powiat.trzebnica.pl</li>
+                <li>tel: 71 387 95 26/71 387 95 27</li>
+                <li>ePUAP: /s9w6dl6a8n/SkrytkaESP</li>
+                <li>NIP: 915-15-23-775</li>
+                <li>Regon:931952330</li>
+            </ul>
+            <button>
+                <text>pokaÅ¼ numery telefonu</text>
+                <postback>tajnenrtel1</postback>
+            </button>
+        </template>
+    </category>
+    
+<category>
+    <pattern>pokaÅ¼ numery telefonu</pattern>
+    <template><delay>1</delay><srai>tajnenrtel1</srai></template>
+</category>
+ 
+ <category>
+     <pattern>tajnenrtel1</pattern>
+     <template>
+         <think><set name="count">0</set></think>
+            <condition name="count">
+                <li><value>3</value></li>
+                <li><delay>1</delay>
+                    <set name="count">
+                    <map><name>successor</name><get name="count"/></map>
+                    </set>
+                    <map><name>tel1fony</name><get name="count"/></map>
+                    <loop/>
+                </li>
+            </condition>
+     </template>
+ </category>
+ 
+ <category>
+     <pattern>^ skontaktowaÄ ^</pattern>
+     <template><srai>^kontakt ^</srai></template>
+ </category>
+
+    
+    <!--  DOJAZD  -->
+    
+    <category>
+        <pattern>^ dojazd ^</pattern>
+        <template><think><set name ="topic">ogl1</set></think>
+        <delay>1</delay>Oto mapa z dojazdem do nas ð
+            <card>
+                <image>https://lh5.googleusercontent.com/p/AF1QipN6eTk8iDmL8mtJcfk4FwInH_DXumfrEO5BXp4P=s387-k-no</image>
+                <title>WydziaÅ komunikacji</title>
+                <subtitle>Trzebnica ul.LeÅna 1</subtitle>
+                <button>
+                    <text>Kliknij tutaj</text>
+                    <url>https://goo.gl/maps/VjM4aa1tdqzfZsaw7</url>
+                </button>
+            </card>
+        <delay>1</delay>W czymÅ jeszcze mogÄ pomÃ³c?
+        </template>
+    </category>
+    
+    <category>
+        <pattern>^ dojechaÄ ^</pattern><template><srai>^ dojazd ^</srai></template>
+    </category>
+    
+    <!--  GODZINY  -->
+  
+    <category>
+        <pattern>Godziny ^</pattern>
+        <template><think><set name ="topic">ogl1</set></think>
+        <delay>1</delay>WydziaÅ komunikacji czynny jest:
+        <ul>
+            <li>PoniedziaÅek - 7:45 - 15:00</li>
+            <li>Wtorek - 7:45 - 15:00</li>
+            <li>Åroda - 9:45 - 17:00</li>
+            <li>Czwartek - 7:45 - 15:00</li>
+            <li>PiÄtek - 7:45 - 15:00</li>
+            <li>Sobota - nieczynne</li>
+            <li>Niedziela - nieczynne</li>
+        </ul>
+        <delay>1</delay>W czymÅ jeszcze mogÄ pomÃ³c?
+        </template>
+    </category> 
+    
+    <category>
+        <pattern>^ czynny ^</pattern>
+        <template><srai>Godziny ^</srai></template>
+    </category>
+  
+    <!--  POMOC  -->
+    <category>
+        <pattern>pomoc</pattern> 
+        <template><delay>1</delay>
+            <image>https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/%3Fuestionmark.svg/1200px-%3Fuestionmark.svg.png</image>
+            <delay>1</delay>Sprawy jakich moÅ¼esz siÄ u mnie dowiedzieÄ to:
+        <ol>
+            <li>Prawo jazdy</li>
+            <li>Pejestracja</li>
+            <li>Kontakt/Dojazd</li>
+            <li>Godziny otwarcia</li>
+        </ol>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>^ umiesz ^</pattern><template><srai>pomoc</srai></template>
+    </category>
+
+    <!--  BRAK DOPASOWANIA  -->
+    <category>
+        <pattern>*</pattern> 
+        <template><random>
+            <li><delay>1</delay>Niestety nie wiem nic na ten temat. â¹ï¸
+                <delay>1</delay><star/>
+                <delay>1</delay>JeÅli potrzebujesz pomocy, wpisz POMOC.</li>
+            <li><delay>1</delay>WytÅumacz mi jeszcze raz co masz na myÅli. â¹ï¸
+                <delay>1</delay><star/>
+                <delay>1</delay> JeÅli potrzebujesz pomocy, wpisz POMOC.</li>
+        </random></template>
+    </category>
+
+
+<category>
+    <pattern>ok</pattern>
+    <template><think><set name ="topic">ogl1</set></think>ð
+        <delay>1</delay>W czymÅ jeszcze mogÄ pomÃ³c?
+    </template>
+</category>
+
+<category>
+    <pattern>dziÄki</pattern>
+    <template><think><set name ="topic">ogl1</set></think>
+        <delay>1</delay>
+        ProszÄ ð<delay>1</delay>W czymÅ jeszcze mogÄ pomÃ³c?
+    </template>
+</category>
+
+<category>
+    <pattern>nie</pattern><template><delay>1</delay>ale co nie?</template>
+</category>
+
+<category>
+    <pattern>tak</pattern><template><delay>1</delay>ale co tak?</template>
+</category>
+
+<category>
+    <pattern>jaki dziÅ dzieÅ</pattern><template><delay>1</delay>DziÅ jest <date format="%d %B, %Y"/></template>
+</category>
+
+<category>
+    <pattern>ID</pattern>
+    <template><sentence><input/>: <id/></sentence></template>
+</category>
+ 
+<topic name = "ogl1"> 
+ 
+ <category>
+     <pattern>nie</pattern>
+     <template><delay>1</delay>DziÄki za rozmowÄ!</template>
+ </category>
+ 
+</topic>
+</aiml>
